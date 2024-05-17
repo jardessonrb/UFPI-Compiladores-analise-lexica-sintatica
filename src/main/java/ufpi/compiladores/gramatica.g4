@@ -4,18 +4,20 @@ programa: 'begin' comandos 'end.';
 
 declaracaoVariaveis: 'var' NomeVariavel (',' NomeVariavel)* ':' Tipos;
 
-comandoRepeticao: 'repeat' comandos 'until' '(' (expressaoBooleana | NomeVariavel) ')';
+comandoRepeticao: 'repeat' comandos 'until' '(' (expressaoBooleana | NomeVariavel | TRUE | FALSE) ')';
 
 atribuicaoVariavel: NomeVariavel ComandoAtribuicao ((INT | FLOAT | NomeVariavel) | expressaoAritmetica);
 
-comandos: comando(';' comando)*;
+comandos: comando(';'comando)*;
 
-comando: (declaracaoVariaveis | comandoRepeticao |  atribuicaoVariavel | comandoPrint | comandoRead)*;
+comando: (declaracaoVariaveis | comandoRepeticao |  atribuicaoVariavel | comandoPrint | comandoRead | comandoIf)*;
+
+
+listaArgumentosPrint: (String | NomeVariavel)(','(String | NomeVariavel))*;
+listaArgumentosRead:  NomeVariavel(','NomeVariavel)*;
 
 comandoPrint: 'print' '(' listaArgumentosPrint? ')';
 comandoRead: 'read' '(' listaArgumentosRead? ')';
-listaArgumentosPrint: (String | NomeVariavel)(','(String | NomeVariavel))*;
-listaArgumentosRead:  NomeVariavel(','NomeVariavel)*;
 
 expressaoAritmetica: termo (Op1 termo)*;
 termo: fator (Op2 fator)*;
@@ -30,6 +32,9 @@ fatorBool: relacional | negacao;
 relacional: relacao | '(' expressaoBooleana ')';
 relacao: NUMBER (OPERADOR NUMBER);
 negacao: NOT fatorBool;
+
+
+comandoIf: 'if' '(' expressaoBooleana? ')' 'then' comandos ('else' comandos)? 'endif';
 
 
 fragment Letra: [a-zA-Z];
@@ -48,6 +53,8 @@ String : '"' ( ('\\'('"'|'t'|'n')) | ~('\\' | '\n') )*? '"' ;
 ComandoAtribuicao:  ':=';
 INT: [0-9]+;
 FLOAT: [0-9]+'.'[0-9]+;
+TRUE: 'true';
+FALSE: 'false';
 Valor: (NomeVariavel | INT | FLOAT);
 ESCAPES : [ \t\r\n]+ -> skip ;
 

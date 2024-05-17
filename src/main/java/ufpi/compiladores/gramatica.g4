@@ -49,12 +49,13 @@ Op1:  '-' | '+';
 Op2: '*' | '/' | '%';
 Op3: '^';
 NomeVariavel: Letra(Letra | Digito)*;
-String : '"' ( ('\\'('"'|'t'|'n')) | ~('\\' | '\n') )*? '"' ;
+String : '\'' ( ('\\'('"'|'t'|'n')) | ~('\\' | '\n') )*? '\'' ;
 ComandoAtribuicao:  ':=';
 INT: [0-9]+;
 FLOAT: [0-9]+'.'[0-9]+;
 TRUE: 'true';
 FALSE: 'false';
 Valor: (NomeVariavel | INT | FLOAT);
+COMENTARIOS : '{' .*? '}' -> skip;
 ESCAPES : [ \t\r\n]+ -> skip ;
 

@@ -2,35 +2,36 @@ grammar gramatica;
 
 programa: 'begin' comandos 'end.';
 
-declaracaoVariaveis: 'var' NomeVariavel (',' NomeVariavel)* ':' Tipos;
+declaracaoVariaveis: 'var' NOME_VARIAVEL (',' NOME_VARIAVEL)* ':' Tipos;
 
-comandoRepeticao: 'repeat' comandos 'until' '(' (expressaoBooleana | NomeVariavel | TRUE | FALSE) ')';
+comandoRepeticao: 'repeat' comandos 'until' '(' (expressaoBooleana | NOME_VARIAVEL | TRUE | FALSE) ')';
 
-atribuicaoVariavel: NomeVariavel ComandoAtribuicao ((INT | FLOAT | NomeVariavel) | expressaoAritmetica);
+atribuicaoVariavel: NOME_VARIAVEL ComandoAtribuicao ((INT | FLOAT | NOME_VARIAVEL) | expressaoAritmetica);
 
 comandos: comando(';'comando)*;
 
 comando: (declaracaoVariaveis | comandoRepeticao |  atribuicaoVariavel | comandoPrint | comandoRead | comandoIf)*;
 
 
-listaArgumentosPrint: (String | NomeVariavel)(','(String | NomeVariavel))*;
-listaArgumentosRead:  NomeVariavel(','NomeVariavel)*;
+listaArgumentosPrint: (String | NOME_VARIAVEL)(','(String | NOME_VARIAVEL))*;
+listaArgumentosRead:  NOME_VARIAVEL(','NOME_VARIAVEL)*;
 
 comandoPrint: 'print' '(' listaArgumentosPrint? ')';
 comandoRead: 'read' '(' listaArgumentosRead? ')';
 
 expressaoAritmetica: termo (Op1 termo)*;
 termo: fator (Op2 fator)*;
-fator: primeiroTermo (Op3 primeiroTermo)*;
-primeiroTermo: NUMBER | '(' expressaoAritmetica ')';
+fator: val | '(' expressaoAritmetica ')' ;
+
 NUMBER: ('+' | '-')? (INT | FLOAT);
 
+val: (NOME_VARIAVEL | NUMBER);
 
 expressaoBooleana: termoBool ((AND | OR) termoBool)*;
 termoBool: fatorBool | negacao;
 fatorBool: relacional | negacao;
 relacional: relacao | '(' expressaoBooleana ')';
-relacao: NUMBER (OPERADOR NUMBER);
+relacao: val (OPERADOR val);
 negacao: NOT fatorBool;
 
 
@@ -47,15 +48,14 @@ OR: 'or';
 Tipos: 'int' | 'float';
 Op1:  '-' | '+';
 Op2: '*' | '/' | '%';
-Op3: '^';
-NomeVariavel: Letra(Letra | Digito)*;
+NOME_VARIAVEL: Letra(Letra | Digito)*;
 String : '\'' ( ('\\'('"'|'t'|'n')) | ~('\\' | '\n') )*? '\'' ;
 ComandoAtribuicao:  ':=';
 INT: [0-9]+;
 FLOAT: [0-9]+'.'[0-9]+;
 TRUE: 'true';
 FALSE: 'false';
-Valor: (NomeVariavel | INT | FLOAT);
+Valor: (NOME_VARIAVEL | INT | FLOAT);
 COMENTARIOS : '{' .*? '}' -> skip;
 ESCAPES : [ \t\r\n]+ -> skip ;
 

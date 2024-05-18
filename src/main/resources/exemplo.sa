@@ -1,0 +1,23 @@
+begin
+
+var v1, v2, v3: int
+var random: float
+repeat
+    v1 := (int)(random % 2);
+    v2 := 1;
+    v3 := (int) (10.5);
+
+    if(v1 == 2) then
+        print(v1, ' É número par');
+    else
+        print(v1, ' Não é número par');
+
+        if(v2 < 15) then
+            v2 := v2 + 1;
+        else
+            v2 := v2 + v1;
+        endif
+    endif
+until(v1 <= 10 and v2 < 15)
+
+end.

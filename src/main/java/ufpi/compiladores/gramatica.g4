@@ -2,9 +2,11 @@ grammar gramatica;
 
 programa: BEGIN comandos END;
 
-comandos: comando(';'comando)*;
+comandos: comandosDel(';'comandosDel)*;
 
-comando: (declaracaoVariaveis | comandoRepeat |  atribuicaoVariavel | comandoPrint | comandoRead | comandoIf)*;
+comandosDel: declaracaoVariaveis | atribuicaoVariavel | comandoPrint | comandoRead | comandoRepeat | comandoIf;
+
+comando: comandosDel(';'comandosDel);
 
 declaracaoVariaveis: VAR NOME_VARIAVEL (',' NOME_VARIAVEL)* ':' TIPOS;
 
@@ -16,7 +18,7 @@ comandoPrint: PRINT '(' listaArgumentosPrint? ')';
 
 comandoRead: READ '(' listaArgumentosRead? ')';
 
-comandoIf: IF '(' expressaoBooleana? ')' THEN comandos (ELSE comandos)? ENDIF;
+comandoIf: IF '(' (expressaoBooleana | NOME_VARIAVEL) ')' THEN comandos (ELSE comandos)? ENDIF;
 
 //Argumentos do Print
 listaArgumentosPrint: argumentoPrint(','argumentoPrint)*;
@@ -34,12 +36,9 @@ fatorAri: variavelValor
 
 //Expresão Booleana com precedência de operadores lógicos
 expressaoBooleana: termoBool ((AND | OR) termoBool)*;
-termoBool: fatorBool
-            | negacao;
-fatorBool: relacional
-            | negacao;
-relacional: relacao
-            | '(' expressaoBooleana ')';
+termoBool: fatorBool | negacao;
+fatorBool: relacional | negacao;
+relacional: relacao | '(' expressaoBooleana ')';
 relacao: variavelValor (OPERADOR variavelValor);
 negacao: NOT fatorBool;
 
@@ -59,7 +58,6 @@ THEN: 'then';
 ENDIF:'endif';
 PRINT: 'print';
 READ: 'read';
-
 
 //Operadores Relacionais
 OPERADOR: '>' | '>=' | '<' | '<=' | '==' | '!=';

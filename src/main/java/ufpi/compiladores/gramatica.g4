@@ -13,7 +13,8 @@ comandos: comando(';'comando)*;
 comando: (declaracaoVariaveis | comandoRepeticao |  atribuicaoVariavel | comandoPrint | comandoRead | comandoIf)*;
 
 
-listaArgumentosPrint: (String | NOME_VARIAVEL)(','(String | NOME_VARIAVEL))*;
+argumentoPrint: (String | NOME_VARIAVEL | NUMBER);
+listaArgumentosPrint: argumentoPrint(','argumentoPrint)*;
 listaArgumentosRead:  NOME_VARIAVEL(','NOME_VARIAVEL)*;
 
 comandoPrint: 'print' '(' listaArgumentosPrint? ')';
@@ -21,7 +22,8 @@ comandoRead: 'read' '(' listaArgumentosRead? ')';
 
 expressaoAritmetica: termo (Op1 termo)*;
 termo: fator (Op2 fator)*;
-fator: val | '(' expressaoAritmetica ')' ;
+fator: val | '(' expressaoAritmetica ')' | conversaoExplicita ;
+conversaoExplicita: '(int)''(' expressaoAritmetica ')' | '(float)''(' expressaoAritmetica ')';
 
 NUMBER: ('+' | '-')? (INT | FLOAT);
 

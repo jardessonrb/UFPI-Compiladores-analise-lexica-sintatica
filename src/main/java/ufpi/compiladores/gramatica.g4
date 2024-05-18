@@ -39,7 +39,7 @@ expressaoBooleana: termoBool ((AND | OR) termoBool)*;
 termoBool: fatorBool | negacao;
 fatorBool: relacional | negacao;
 relacional: relacao | '(' expressaoBooleana ')';
-relacao: variavelValor (OPERADOR variavelValor);
+relacao: (variavelValor | '(' expressaoAritmetica ')') (OPERADOR variavelValor);
 negacao: NOT fatorBool;
 
 conversaoExplicita: CONVERSAO_EXPLICITO'(' expressaoAritmetica ')';

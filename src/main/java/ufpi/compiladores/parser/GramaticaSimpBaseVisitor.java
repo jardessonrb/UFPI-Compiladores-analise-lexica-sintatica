@@ -1,9 +1,14 @@
 // Generated from C:/projetos/analise-lexica-sintatica/src/main/java/ufpi/compiladores/GramaticaSimp.g4 by ANTLR 4.13.1
-package ufpi.compiladores;
+package ufpi.compiladores.parser;
+
+    import java.util.*;
+    import ufpi.compiladores.backend.TabelaSimbolo;
+    import ufpi.compiladores.backend.Variavel;
+
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
- * This class provides an empty implementation of {@link GramaticaVisitor},
+ * This class provides an empty implementation of {@link GramaticaSimpVisitor},
  * which can be extended to create a visitor which only needs to handle a subset
  * of the available methods.
  *
@@ -11,173 +16,166 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  * operations with no return type.
  */
 @SuppressWarnings("CheckReturnValue")
-public class GramaticaBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements GramaticaVisitor<T> {
+public class GramaticaSimpBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements GramaticaSimpVisitor<T> {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPrograma(GramaticaParser.ProgramaContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPrograma(GramaticaSimpParser.ProgramaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitComandos(GramaticaParser.ComandosContext ctx) { return visitChildren(ctx); }
+	@Override public T visitComandos(GramaticaSimpParser.ComandosContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitComandosDel(GramaticaParser.ComandosDelContext ctx) { return visitChildren(ctx); }
+	@Override public T visitComandosDel(GramaticaSimpParser.ComandosDelContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitComando(GramaticaParser.ComandoContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDeclaracaoVariaveis(GramaticaSimpParser.DeclaracaoVariaveisContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDeclaracaoVariaveis(GramaticaParser.DeclaracaoVariaveisContext ctx) { return visitChildren(ctx); }
+	@Override public T visitComandoRepeat(GramaticaSimpParser.ComandoRepeatContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitComandoRepeat(GramaticaParser.ComandoRepeatContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAtribuicaoVariavel(GramaticaSimpParser.AtribuicaoVariavelContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAtribuicaoVariavel(GramaticaParser.AtribuicaoVariavelContext ctx) { return visitChildren(ctx); }
+	@Override public T visitComandoPrint(GramaticaSimpParser.ComandoPrintContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitComandoPrint(GramaticaParser.ComandoPrintContext ctx) { return visitChildren(ctx); }
+	@Override public T visitComandoRead(GramaticaSimpParser.ComandoReadContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitComandoRead(GramaticaParser.ComandoReadContext ctx) { return visitChildren(ctx); }
+	@Override public T visitComandoIf(GramaticaSimpParser.ComandoIfContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitComandoIf(GramaticaParser.ComandoIfContext ctx) { return visitChildren(ctx); }
+	@Override public T visitListaArgumentosPrint(GramaticaSimpParser.ListaArgumentosPrintContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitListaArgumentosPrint(GramaticaParser.ListaArgumentosPrintContext ctx) { return visitChildren(ctx); }
+	@Override public T visitArgumentoPrint(GramaticaSimpParser.ArgumentoPrintContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitArgumentoPrint(GramaticaParser.ArgumentoPrintContext ctx) { return visitChildren(ctx); }
+	@Override public T visitListaArgumentosRead(GramaticaSimpParser.ListaArgumentosReadContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitListaArgumentosRead(GramaticaParser.ListaArgumentosReadContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExpressaoAritmetica(GramaticaSimpParser.ExpressaoAritmeticaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpressaoAritmetica(GramaticaParser.ExpressaoAritmeticaContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTermoAri(GramaticaSimpParser.TermoAriContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTermoAri(GramaticaParser.TermoAriContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFatorAri(GramaticaSimpParser.FatorAriContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFatorAri(GramaticaParser.FatorAriContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExpressaoBooleana(GramaticaSimpParser.ExpressaoBooleanaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpressaoBooleana(GramaticaParser.ExpressaoBooleanaContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTermoBool(GramaticaSimpParser.TermoBoolContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTermoBool(GramaticaParser.TermoBoolContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFatorBool(GramaticaSimpParser.FatorBoolContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFatorBool(GramaticaParser.FatorBoolContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRelacional(GramaticaSimpParser.RelacionalContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitRelacional(GramaticaParser.RelacionalContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRelacao(GramaticaSimpParser.RelacaoContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitRelacao(GramaticaParser.RelacaoContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNegacao(GramaticaSimpParser.NegacaoContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitNegacao(GramaticaParser.NegacaoContext ctx) { return visitChildren(ctx); }
+	@Override public T visitConversaoExplicita(GramaticaSimpParser.ConversaoExplicitaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitConversaoExplicita(GramaticaParser.ConversaoExplicitaContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitVariavelValor(GramaticaParser.VariavelValorContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVariavelValor(GramaticaSimpParser.VariavelValorContext ctx) { return visitChildren(ctx); }
 }

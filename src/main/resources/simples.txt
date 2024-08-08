@@ -1,0 +1,3 @@
+begin
+var v1, v2, v3: int
+end.

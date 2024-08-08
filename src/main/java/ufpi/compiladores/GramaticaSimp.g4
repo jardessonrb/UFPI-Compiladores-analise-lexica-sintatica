@@ -1,24 +1,45 @@
-grammar gramatica;
+grammar GramaticaSimp;
+
+
+@header {
+    import java.util.*;
+    import ufpi.compiladores.backend.TabelaSimbolo;
+    import ufpi.compiladores.backend.Variavel;
+}
+
+@members {
+    TabelaSimbolo tabelaSimbolos = new TabelaSimbolo();
+}
 
 programa: BEGIN comandos END;
 
-comandos: comandosDel(';'comandosDel)*;
+comandos : comandosDel(';'comandosDel)* ;
 
-comandosDel: declaracaoVariaveis | atribuicaoVariavel | comandoPrint | comandoRead | comandoRepeat | comandoIf;
+comandosDel: declaracaoVariaveis {
 
-comando: comandosDel(';'comandosDel);
+System.out.println("Tipo Declaracao: "+ $declaracaoVariaveis.tipoDeclaracao);
+tabelaSimbolos.printVariaveis();
 
-declaracaoVariaveis: VAR NOME_VARIAVEL (',' NOME_VARIAVEL)* ':' TIPOS;
+} | atribuicaoVariavel | comandoPrint | comandoRead | comandoRepeat | comandoIf;
 
-comandoRepeat: REPEAT comandos UNTIL '(' (expressaoBooleana | NOME_VARIAVEL | TRUE | FALSE) ')';
+//comando: comandosDel(';'comandosDel);
+
+declaracaoVariaveis returns [String tipoDeclaracao]: {$tipoDeclaracao = "";} VAR NOME_VARIAVEL {
+    tabelaSimbolos.declararVariavel($NOME_VARIAVEL.text, new Variavel($NOME_VARIAVEL.text));
+}
+(',' NOME_VARIAVEL {
+    tabelaSimbolos.declararVariavel($NOME_VARIAVEL.text, new Variavel($NOME_VARIAVEL.text));
+})* ':' TIPOS {tabelaSimbolos.atualizarTipo($TIPOS.text);};
+
+comandoRepeat: REPEAT comandos UNTIL '(' (expressaoBooleana | TRUE | FALSE) ')';
 
 atribuicaoVariavel: NOME_VARIAVEL CMD_ATRIBUICAO ((INT | FLOAT | NOME_VARIAVEL) | expressaoAritmetica);
 
-comandoPrint: PRINT '(' listaArgumentosPrint? ')';
+comandoPrint: PRINT '(' listaArgumentosPrint ')';
 
-comandoRead: READ '(' listaArgumentosRead? ')';
+comandoRead: READ '(' listaArgumentosRead ')';
 
-comandoIf: IF '(' (expressaoBooleana | NOME_VARIAVEL) ')' THEN comandos (ELSE comandos)? ENDIF;
+comandoIf: IF '(' (expressaoBooleana) ')' THEN comandos (ELSE comandos)? ENDIF;
 
 //Argumentos do Print
 listaArgumentosPrint: argumentoPrint(','argumentoPrint)*;
@@ -42,7 +63,7 @@ relacional: relacao | '(' expressaoBooleana ')';
 relacao: (variavelValor | '(' expressaoAritmetica ')') (OPERADOR variavelValor);
 negacao: NOT fatorBool;
 
-conversaoExplicita: CONVERSAO_EXPLICITO'(' expressaoAritmetica ')';
+conversaoExplicita: CONVERSAO_EXPLICITO '(' expressaoAritmetica ')';
 
 variavelValor: (NOME_VARIAVEL | NUMERO);
 
@@ -76,7 +97,7 @@ TRUE: 'true';
 FALSE: 'false';
 
 TIPOS: 'int' | 'float';
-CONVERSAO_EXPLICITO: ('(int)' | '(float)');
+CONVERSAO_EXPLICITO:  ('(int)' | '(float)');
 NOME_VARIAVEL: LETRA(LETRA | DIGITO)*;
 CMD_ATRIBUICAO:  ':=';
 NUMERO: ('+' | '-')? (INT | FLOAT);

@@ -1,5 +1,10 @@
 // Generated from C:/projetos/analise-lexica-sintatica/src/main/java/ufpi/compiladores/GramaticaSimp.g4 by ANTLR 4.13.1
-package ufpi.compiladores;
+package ufpi.compiladores.parser;
+
+    import java.util.*;
+    import ufpi.compiladores.backend.TabelaSimbolo;
+    import ufpi.compiladores.backend.Variavel;
+
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -10,7 +15,7 @@ import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue", "this-escape"})
-public class GramaticaLexer extends Lexer {
+public class GramaticaSimpLexer extends Lexer {
 	static { RuntimeMetaData.checkVersion("4.13.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -94,7 +99,10 @@ public class GramaticaLexer extends Lexer {
 	}
 
 
-	public GramaticaLexer(CharStream input) {
+	    TabelaSimbolo tabelaSimbolos = new TabelaSimbolo();
+
+
+	public GramaticaSimpLexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}

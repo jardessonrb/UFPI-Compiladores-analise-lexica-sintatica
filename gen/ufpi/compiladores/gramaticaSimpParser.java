@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
-public class GramaticaParser extends Parser {
+public class GramaticaSimpParser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.13.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -106,33 +106,33 @@ public class GramaticaParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public GramaticaParser(TokenStream input) {
+	public GramaticaSimpParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ProgramaContext extends ParserRuleContext {
-		public TerminalNode BEGIN() { return getToken(GramaticaParser.BEGIN, 0); }
+		public TerminalNode BEGIN() { return getToken(GramaticaSimpParser.BEGIN, 0); }
 		public ComandosContext comandos() {
 			return getRuleContext(ComandosContext.class,0);
 		}
-		public TerminalNode END() { return getToken(GramaticaParser.END, 0); }
+		public TerminalNode END() { return getToken(GramaticaSimpParser.END, 0); }
 		public ProgramaContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_programa; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterPrograma(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterPrograma(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitPrograma(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitPrograma(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitPrograma(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitPrograma(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -176,15 +176,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_comandos; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterComandos(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterComandos(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitComandos(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitComandos(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitComandos(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitComandos(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -253,15 +253,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_comandosDel; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterComandosDel(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterComandosDel(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitComandosDel(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitComandosDel(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitComandosDel(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitComandosDel(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -344,15 +344,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_comando; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterComando(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterComando(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitComando(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitComando(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitComando(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitComando(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -386,27 +386,27 @@ public class GramaticaParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class DeclaracaoVariaveisContext extends ParserRuleContext {
-		public TerminalNode VAR() { return getToken(GramaticaParser.VAR, 0); }
-		public List<TerminalNode> NOME_VARIAVEL() { return getTokens(GramaticaParser.NOME_VARIAVEL); }
+		public TerminalNode VAR() { return getToken(GramaticaSimpParser.VAR, 0); }
+		public List<TerminalNode> NOME_VARIAVEL() { return getTokens(GramaticaSimpParser.NOME_VARIAVEL); }
 		public TerminalNode NOME_VARIAVEL(int i) {
-			return getToken(GramaticaParser.NOME_VARIAVEL, i);
+			return getToken(GramaticaSimpParser.NOME_VARIAVEL, i);
 		}
-		public TerminalNode TIPOS() { return getToken(GramaticaParser.TIPOS, 0); }
+		public TerminalNode TIPOS() { return getToken(GramaticaSimpParser.TIPOS, 0); }
 		public DeclaracaoVariaveisContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_declaracaoVariaveis; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterDeclaracaoVariaveis(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterDeclaracaoVariaveis(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitDeclaracaoVariaveis(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitDeclaracaoVariaveis(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitDeclaracaoVariaveis(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitDeclaracaoVariaveis(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -457,31 +457,31 @@ public class GramaticaParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ComandoRepeatContext extends ParserRuleContext {
-		public TerminalNode REPEAT() { return getToken(GramaticaParser.REPEAT, 0); }
+		public TerminalNode REPEAT() { return getToken(GramaticaSimpParser.REPEAT, 0); }
 		public ComandosContext comandos() {
 			return getRuleContext(ComandosContext.class,0);
 		}
-		public TerminalNode UNTIL() { return getToken(GramaticaParser.UNTIL, 0); }
+		public TerminalNode UNTIL() { return getToken(GramaticaSimpParser.UNTIL, 0); }
 		public ExpressaoBooleanaContext expressaoBooleana() {
 			return getRuleContext(ExpressaoBooleanaContext.class,0);
 		}
-		public TerminalNode TRUE() { return getToken(GramaticaParser.TRUE, 0); }
-		public TerminalNode FALSE() { return getToken(GramaticaParser.FALSE, 0); }
+		public TerminalNode TRUE() { return getToken(GramaticaSimpParser.TRUE, 0); }
+		public TerminalNode FALSE() { return getToken(GramaticaSimpParser.FALSE, 0); }
 		public ComandoRepeatContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_comandoRepeat; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterComandoRepeat(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterComandoRepeat(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitComandoRepeat(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitComandoRepeat(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitComandoRepeat(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitComandoRepeat(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -544,31 +544,31 @@ public class GramaticaParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class AtribuicaoVariavelContext extends ParserRuleContext {
-		public List<TerminalNode> NOME_VARIAVEL() { return getTokens(GramaticaParser.NOME_VARIAVEL); }
+		public List<TerminalNode> NOME_VARIAVEL() { return getTokens(GramaticaSimpParser.NOME_VARIAVEL); }
 		public TerminalNode NOME_VARIAVEL(int i) {
-			return getToken(GramaticaParser.NOME_VARIAVEL, i);
+			return getToken(GramaticaSimpParser.NOME_VARIAVEL, i);
 		}
-		public TerminalNode CMD_ATRIBUICAO() { return getToken(GramaticaParser.CMD_ATRIBUICAO, 0); }
+		public TerminalNode CMD_ATRIBUICAO() { return getToken(GramaticaSimpParser.CMD_ATRIBUICAO, 0); }
 		public ExpressaoAritmeticaContext expressaoAritmetica() {
 			return getRuleContext(ExpressaoAritmeticaContext.class,0);
 		}
-		public TerminalNode INT() { return getToken(GramaticaParser.INT, 0); }
-		public TerminalNode FLOAT() { return getToken(GramaticaParser.FLOAT, 0); }
+		public TerminalNode INT() { return getToken(GramaticaSimpParser.INT, 0); }
+		public TerminalNode FLOAT() { return getToken(GramaticaSimpParser.FLOAT, 0); }
 		public AtribuicaoVariavelContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_atribuicaoVariavel; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterAtribuicaoVariavel(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterAtribuicaoVariavel(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitAtribuicaoVariavel(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitAtribuicaoVariavel(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitAtribuicaoVariavel(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitAtribuicaoVariavel(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -623,7 +623,7 @@ public class GramaticaParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ComandoPrintContext extends ParserRuleContext {
-		public TerminalNode PRINT() { return getToken(GramaticaParser.PRINT, 0); }
+		public TerminalNode PRINT() { return getToken(GramaticaSimpParser.PRINT, 0); }
 		public ListaArgumentosPrintContext listaArgumentosPrint() {
 			return getRuleContext(ListaArgumentosPrintContext.class,0);
 		}
@@ -633,15 +633,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_comandoPrint; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterComandoPrint(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterComandoPrint(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitComandoPrint(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitComandoPrint(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitComandoPrint(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitComandoPrint(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -675,7 +675,7 @@ public class GramaticaParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ComandoReadContext extends ParserRuleContext {
-		public TerminalNode READ() { return getToken(GramaticaParser.READ, 0); }
+		public TerminalNode READ() { return getToken(GramaticaSimpParser.READ, 0); }
 		public ListaArgumentosReadContext listaArgumentosRead() {
 			return getRuleContext(ListaArgumentosReadContext.class,0);
 		}
@@ -685,15 +685,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_comandoRead; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterComandoRead(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterComandoRead(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitComandoRead(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitComandoRead(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitComandoRead(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitComandoRead(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -727,34 +727,34 @@ public class GramaticaParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ComandoIfContext extends ParserRuleContext {
-		public TerminalNode IF() { return getToken(GramaticaParser.IF, 0); }
-		public TerminalNode THEN() { return getToken(GramaticaParser.THEN, 0); }
+		public TerminalNode IF() { return getToken(GramaticaSimpParser.IF, 0); }
+		public TerminalNode THEN() { return getToken(GramaticaSimpParser.THEN, 0); }
 		public List<ComandosContext> comandos() {
 			return getRuleContexts(ComandosContext.class);
 		}
 		public ComandosContext comandos(int i) {
 			return getRuleContext(ComandosContext.class,i);
 		}
-		public TerminalNode ENDIF() { return getToken(GramaticaParser.ENDIF, 0); }
+		public TerminalNode ENDIF() { return getToken(GramaticaSimpParser.ENDIF, 0); }
 		public ExpressaoBooleanaContext expressaoBooleana() {
 			return getRuleContext(ExpressaoBooleanaContext.class,0);
 		}
-		public TerminalNode ELSE() { return getToken(GramaticaParser.ELSE, 0); }
+		public TerminalNode ELSE() { return getToken(GramaticaSimpParser.ELSE, 0); }
 		public ComandoIfContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_comandoIf; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterComandoIf(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterComandoIf(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitComandoIf(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitComandoIf(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitComandoIf(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitComandoIf(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -821,15 +821,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_listaArgumentosPrint; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterListaArgumentosPrint(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterListaArgumentosPrint(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitListaArgumentosPrint(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitListaArgumentosPrint(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitListaArgumentosPrint(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitListaArgumentosPrint(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -874,24 +874,24 @@ public class GramaticaParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ArgumentoPrintContext extends ParserRuleContext {
-		public TerminalNode CADEIA() { return getToken(GramaticaParser.CADEIA, 0); }
-		public TerminalNode NOME_VARIAVEL() { return getToken(GramaticaParser.NOME_VARIAVEL, 0); }
-		public TerminalNode NUMERO() { return getToken(GramaticaParser.NUMERO, 0); }
+		public TerminalNode CADEIA() { return getToken(GramaticaSimpParser.CADEIA, 0); }
+		public TerminalNode NOME_VARIAVEL() { return getToken(GramaticaSimpParser.NOME_VARIAVEL, 0); }
+		public TerminalNode NUMERO() { return getToken(GramaticaSimpParser.NUMERO, 0); }
 		public ArgumentoPrintContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_argumentoPrint; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterArgumentoPrint(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterArgumentoPrint(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitArgumentoPrint(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitArgumentoPrint(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitArgumentoPrint(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitArgumentoPrint(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -928,9 +928,9 @@ public class GramaticaParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ListaArgumentosReadContext extends ParserRuleContext {
-		public List<TerminalNode> NOME_VARIAVEL() { return getTokens(GramaticaParser.NOME_VARIAVEL); }
+		public List<TerminalNode> NOME_VARIAVEL() { return getTokens(GramaticaSimpParser.NOME_VARIAVEL); }
 		public TerminalNode NOME_VARIAVEL(int i) {
-			return getToken(GramaticaParser.NOME_VARIAVEL, i);
+			return getToken(GramaticaSimpParser.NOME_VARIAVEL, i);
 		}
 		public ListaArgumentosReadContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -938,15 +938,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_listaArgumentosRead; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterListaArgumentosRead(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterListaArgumentosRead(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitListaArgumentosRead(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitListaArgumentosRead(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitListaArgumentosRead(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitListaArgumentosRead(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -997,9 +997,9 @@ public class GramaticaParser extends Parser {
 		public TermoAriContext termoAri(int i) {
 			return getRuleContext(TermoAriContext.class,i);
 		}
-		public List<TerminalNode> Op1() { return getTokens(GramaticaParser.Op1); }
+		public List<TerminalNode> Op1() { return getTokens(GramaticaSimpParser.Op1); }
 		public TerminalNode Op1(int i) {
-			return getToken(GramaticaParser.Op1, i);
+			return getToken(GramaticaSimpParser.Op1, i);
 		}
 		public ExpressaoAritmeticaContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1007,15 +1007,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_expressaoAritmetica; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterExpressaoAritmetica(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterExpressaoAritmetica(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitExpressaoAritmetica(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitExpressaoAritmetica(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitExpressaoAritmetica(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitExpressaoAritmetica(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1066,9 +1066,9 @@ public class GramaticaParser extends Parser {
 		public FatorAriContext fatorAri(int i) {
 			return getRuleContext(FatorAriContext.class,i);
 		}
-		public List<TerminalNode> Op2() { return getTokens(GramaticaParser.Op2); }
+		public List<TerminalNode> Op2() { return getTokens(GramaticaSimpParser.Op2); }
 		public TerminalNode Op2(int i) {
-			return getToken(GramaticaParser.Op2, i);
+			return getToken(GramaticaSimpParser.Op2, i);
 		}
 		public TermoAriContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1076,15 +1076,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_termoAri; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterTermoAri(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterTermoAri(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitTermoAri(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitTermoAri(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitTermoAri(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitTermoAri(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1144,15 +1144,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_fatorAri; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterFatorAri(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterFatorAri(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitFatorAri(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitFatorAri(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitFatorAri(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitFatorAri(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1213,13 +1213,13 @@ public class GramaticaParser extends Parser {
 		public TermoBoolContext termoBool(int i) {
 			return getRuleContext(TermoBoolContext.class,i);
 		}
-		public List<TerminalNode> AND() { return getTokens(GramaticaParser.AND); }
+		public List<TerminalNode> AND() { return getTokens(GramaticaSimpParser.AND); }
 		public TerminalNode AND(int i) {
-			return getToken(GramaticaParser.AND, i);
+			return getToken(GramaticaSimpParser.AND, i);
 		}
-		public List<TerminalNode> OR() { return getTokens(GramaticaParser.OR); }
+		public List<TerminalNode> OR() { return getTokens(GramaticaSimpParser.OR); }
 		public TerminalNode OR(int i) {
-			return getToken(GramaticaParser.OR, i);
+			return getToken(GramaticaSimpParser.OR, i);
 		}
 		public ExpressaoBooleanaContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1227,15 +1227,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_expressaoBooleana; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterExpressaoBooleana(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterExpressaoBooleana(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitExpressaoBooleana(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitExpressaoBooleana(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitExpressaoBooleana(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitExpressaoBooleana(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1300,15 +1300,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_termoBool; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterTermoBool(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterTermoBool(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitTermoBool(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitTermoBool(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitTermoBool(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitTermoBool(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1361,15 +1361,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_fatorBool; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterFatorBool(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterFatorBool(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitFatorBool(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitFatorBool(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitFatorBool(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitFatorBool(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1426,15 +1426,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_relacional; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterRelacional(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterRelacional(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitRelacional(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitRelacional(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitRelacional(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitRelacional(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1488,22 +1488,22 @@ public class GramaticaParser extends Parser {
 		public ExpressaoAritmeticaContext expressaoAritmetica() {
 			return getRuleContext(ExpressaoAritmeticaContext.class,0);
 		}
-		public TerminalNode OPERADOR() { return getToken(GramaticaParser.OPERADOR, 0); }
+		public TerminalNode OPERADOR() { return getToken(GramaticaSimpParser.OPERADOR, 0); }
 		public RelacaoContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_relacao; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterRelacao(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterRelacao(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitRelacao(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitRelacao(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitRelacao(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitRelacao(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1558,7 +1558,7 @@ public class GramaticaParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class NegacaoContext extends ParserRuleContext {
-		public TerminalNode NOT() { return getToken(GramaticaParser.NOT, 0); }
+		public TerminalNode NOT() { return getToken(GramaticaSimpParser.NOT, 0); }
 		public FatorBoolContext fatorBool() {
 			return getRuleContext(FatorBoolContext.class,0);
 		}
@@ -1568,15 +1568,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_negacao; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterNegacao(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterNegacao(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitNegacao(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitNegacao(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitNegacao(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitNegacao(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1606,7 +1606,7 @@ public class GramaticaParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ConversaoExplicitaContext extends ParserRuleContext {
-		public TerminalNode CONVERSAO_EXPLICITO() { return getToken(GramaticaParser.CONVERSAO_EXPLICITO, 0); }
+		public TerminalNode CONVERSAO_EXPLICITO() { return getToken(GramaticaSimpParser.CONVERSAO_EXPLICITO, 0); }
 		public ExpressaoAritmeticaContext expressaoAritmetica() {
 			return getRuleContext(ExpressaoAritmeticaContext.class,0);
 		}
@@ -1616,15 +1616,15 @@ public class GramaticaParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_conversaoExplicita; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterConversaoExplicita(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterConversaoExplicita(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitConversaoExplicita(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitConversaoExplicita(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitConversaoExplicita(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitConversaoExplicita(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1658,23 +1658,23 @@ public class GramaticaParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class VariavelValorContext extends ParserRuleContext {
-		public TerminalNode NOME_VARIAVEL() { return getToken(GramaticaParser.NOME_VARIAVEL, 0); }
-		public TerminalNode NUMERO() { return getToken(GramaticaParser.NUMERO, 0); }
+		public TerminalNode NOME_VARIAVEL() { return getToken(GramaticaSimpParser.NOME_VARIAVEL, 0); }
+		public TerminalNode NUMERO() { return getToken(GramaticaSimpParser.NUMERO, 0); }
 		public VariavelValorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_variavelValor; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterVariavelValor(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).enterVariavelValor(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitVariavelValor(this);
+			if ( listener instanceof GramaticaSimpListener ) ((GramaticaSimpListener)listener).exitVariavelValor(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GramaticaVisitor ) return ((GramaticaVisitor<? extends T>)visitor).visitVariavelValor(this);
+			if ( visitor instanceof GramaticaSimpVisitor ) return ((GramaticaSimpVisitor<? extends T>)visitor).visitVariavelValor(this);
 			else return visitor.visitChildren(this);
 		}
 	}

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ANTLRGenerationPreferences">
+  <component name="ANTLRv4ToolGrammarProperties">
     <option name="perGrammarGenerationSettings">
       <list>
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/src/main/java/ufpi/compiladores/Gramatica.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\projetos\analise-lexica-sintatica\src\main\java\ufpi\codigogerado" />
+          <option name="outputDir" value="" />
           <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
@@ -15,6 +15,7 @@
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/src/main/java/ufpi/compiladores/GramaticaSimp.g4" />
+          <option name="autoGen" value="true" />
           <option name="outputDir" value="C:\projetos\analise-lexica-sintatica\src\main\java" />
           <option name="libDir" value="C:\projetos\analise-lexica-sintatica\src\main\java\ufpi\compiladores" />
           <option name="encoding" value="" />
@@ -24,16 +25,5 @@
         </PerGrammarGenerationSettings>
       </list>
     </option>
-  </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="MavenProjectsManager">
-    <option name="originalFiles">
-      <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="17" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

@@ -20,7 +20,7 @@ comandosDel: declaracaoVariaveis {
 System.out.println("Tipo Declaracao: "+ $declaracaoVariaveis.tipoDeclaracao);
 tabelaSimbolos.printVariaveis();
 
-} | atribuicaoVariavel | comandoPrint | comandoRead | comandoRepeat | comandoIf;
+} | atribuicaoVariavel {System.out.println("ValorAtribuicao: "+$atribuicaoVariavel.valorAtributo);} | comandoPrint | comandoRead | comandoRepeat | comandoIf;
 
 //comando: comandosDel(';'comandosDel);
 
@@ -33,7 +33,7 @@ declaracaoVariaveis returns [String tipoDeclaracao]: {$tipoDeclaracao = "";} VAR
 
 comandoRepeat: REPEAT comandos UNTIL '(' (expressaoBooleana | TRUE | FALSE) ')';
 
-atribuicaoVariavel: NOME_VARIAVEL CMD_ATRIBUICAO ((INT | FLOAT | NOME_VARIAVEL) | expressaoAritmetica);
+atribuicaoVariavel returns [String valorAtributo]: {$valorAtributo = "";} NOME_VARIAVEL CMD_ATRIBUICAO ((INT {$valorAtributo = $INT.text;} | FLOAT {$valorAtributo = $FLOAT.text;} | NOME_VARIAVEL {$valorAtributo = $NOME_VARIAVEL.text;}) | expressaoAritmetica {$valorAtributo = $expressaoAritmetica.code;});
 
 comandoPrint: PRINT '(' listaArgumentosPrint ')';
 
@@ -49,10 +49,24 @@ argumentoPrint: (CADEIA | NOME_VARIAVEL | NUMERO);
 listaArgumentosRead:  NOME_VARIAVEL(','NOME_VARIAVEL)*;
 
 //Expressão aritmética com precedência de operadores
-expressaoAritmetica: termoAri (Op1 termoAri)*;
-termoAri: fatorAri (Op2 fatorAri)*;
-fatorAri: variavelValor
+expressaoAritmetica returns [String code]: {$code = "";}
+
+termoAri {$code += $termoAri.termo;} (Op1 {$code += $Op1.text;} termoAri {
+$code += $termoAri.text;
+$code = tabelaSimbolos.newTemp()+ " = " + $code;
+})*;
+
+termoAri returns [String termo]: {$termo =  "";} fatorAri {$termo += $fatorAri.text;} (Op2 {$termo += $Op2.text;}
+
+fatorAri {
+$termo += $fatorAri.text;
+})*;
+
+fatorAri returns [String code]: {$code = "";} variavelValor {$code = $variavelValor.valor;}
         | '(' expressaoAritmetica ')'
+        {
+            $code += $expressaoAritmetica.code;
+        }
         | conversaoExplicita ;
 
 //Expresão Booleana com precedência de operadores lógicos
@@ -65,7 +79,7 @@ negacao: NOT fatorBool;
 
 conversaoExplicita: CONVERSAO_EXPLICITO '(' expressaoAritmetica ')';
 
-variavelValor: (NOME_VARIAVEL | NUMERO);
+variavelValor returns [String valor]: (NOME_VARIAVEL {$valor = $NOME_VARIAVEL.text;} | NUMERO {$valor = $NUMERO.text;});
 
 //Palavra Reservadas - Regras Lexicas
 BEGIN: 'begin';

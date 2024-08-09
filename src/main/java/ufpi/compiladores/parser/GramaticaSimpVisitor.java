@@ -3,6 +3,7 @@ package ufpi.compiladores.parser;
 
     import java.util.*;
     import ufpi.compiladores.backend.TabelaSimbolo;
+    import ufpi.compiladores.backend.ListaAtribuicao;
     import ufpi.compiladores.backend.Variavel;
 
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;

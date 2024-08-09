@@ -14,6 +14,7 @@ public class TabelaSimbolo {
         cont++;
         return "_t" + Integer.toString(cont);
     }
+
     public String newLabel() {
         System.out.println();
         cont++;

@@ -1,6 +1,5 @@
 grammar GramaticaSimp;
 
-
 @header {
     import java.util.*;
     import ufpi.compiladores.backend.TabelaSimbolo;
@@ -35,7 +34,7 @@ declaracaoVariaveis returns [String tipoDeclaracao]: {$tipoDeclaracao = "";} VAR
 
 comandoRepeat: REPEAT comandos UNTIL '(' (expressaoBooleana | TRUE | FALSE) ')';
 
-atribuicaoVariavel returns [String valorAtributo]: {$valorAtributo = "";} NOME_VARIAVEL {listaAtribuicao.nomeVariavel($NOME_VARIAVEL.text);} CMD_ATRIBUICAO ((INT {$valorAtributo = $INT.text;} | FLOAT {$valorAtributo = $FLOAT.text;} | NOME_VARIAVEL {$valorAtributo = $NOME_VARIAVEL.text;}) | expressaoAritmetica {$valorAtributo += listaAtribuicao.concat();});
+atribuicaoVariavel returns [String valorAtributo]: {$valorAtributo = "";} NOME_VARIAVEL {listaAtribuicao.nomeVariavel($NOME_VARIAVEL.text);} CMD_ATRIBUICAO ((INT {$valorAtributo = $INT.text;} | FLOAT {$valorAtributo = $FLOAT.text;} | NOME_VARIAVEL {$valorAtributo = $NOME_VARIAVEL.text;}) | expressaoAritmetica {$valorAtributo += $expressaoAritmetica.code;});
 
 comandoPrint: PRINT '(' listaArgumentosPrint ')';
 
@@ -52,24 +51,9 @@ listaArgumentosRead:  NOME_VARIAVEL(','NOME_VARIAVEL)*;
 
 //Expressão aritmética com precedência de operadores
 expressaoAritmetica returns [String code, String varAnterior, Integer pos]: {$code = ""; $varAnterior = ""; $pos = 0;}
+termoAri {$code += $termoAri.termo;} (Op1 {$code += $Op1.text;} termoAri {})*;
 
-termoAri {$code += $termoAri.termo;} (Op1 {$code += $Op1.text;} termoAri {
-$code += $termoAri.termo;
-
-if(listaAtribuicao.qntExpressoes() == 0){
-    listaAtribuicao.addExpressao("_t"+listaAtribuicao.qntExpressoes()+" = " +$code);
-}else {
-    listaAtribuicao.addExpressao("_t"+listaAtribuicao.qntExpressoes()+" = "+"_t"+(listaAtribuicao.qntExpressoes() - 1)+$code);
-}
-System.out.println("Code: "+$code);
-$code = "";
-
-})*;
-
-termoAri returns [String termo]: {$termo =  "";} fatorAri {$termo += $fatorAri.code;} (Op2 {$termo += $Op2.text;}
-fatorAri {
-$termo += $fatorAri.code;
-})*;
+termoAri returns [String termo]: {$termo =  "";} fatorAri {$termo += $fatorAri.code;} (Op2 {$termo += $Op2.text;} fatorAri {})*;
 
 fatorAri returns [String code]: {$code = "";} variavelValor {$code = $variavelValor.valor;}
         | '(' expressaoAritmetica ')'
@@ -88,7 +72,7 @@ negacao: NOT fatorBool;
 
 conversaoExplicita: CONVERSAO_EXPLICITO '(' expressaoAritmetica ')';
 
-variavelValor returns [String valor]: (NOME_VARIAVEL {$valor = $NOME_VARIAVEL.text;} | NUMERO {$valor = $NUMERO.text;});
+variavelValor returns [String valor]: ((NOME_VARIAVEL {$valor = $NOME_VARIAVEL.text;} | NUMERO {$valor = $NUMERO.text;}));
 
 //Palavra Reservadas - Regras Lexicas
 BEGIN: 'begin';

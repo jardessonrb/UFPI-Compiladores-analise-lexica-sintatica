@@ -523,6 +523,7 @@ public class GramaticaSimpParser extends Parser {
 		public Token NOME_VARIAVEL;
 		public Token INT;
 		public Token FLOAT;
+		public ExpressaoAritmeticaContext expressaoAritmetica;
 		public List<TerminalNode> NOME_VARIAVEL() { return getTokens(GramaticaSimpParser.NOME_VARIAVEL); }
 		public TerminalNode NOME_VARIAVEL(int i) {
 			return getToken(GramaticaSimpParser.NOME_VARIAVEL, i);
@@ -601,8 +602,8 @@ public class GramaticaSimpParser extends Parser {
 			case 2:
 				{
 				setState(109);
-				expressaoAritmetica();
-				_localctx.valorAtributo += listaAtribuicao.concat();
+				((AtribuicaoVariavelContext)_localctx).expressaoAritmetica = expressaoAritmetica();
+				_localctx.valorAtributo += ((AtribuicaoVariavelContext)_localctx).expressaoAritmetica.code;
 				}
 				break;
 			}
@@ -992,8 +993,10 @@ public class GramaticaSimpParser extends Parser {
 		public String code;
 		public String varAnterior;
 		public Integer pos;
+		public TermoAriContext a;
 		public TermoAriContext termoAri;
 		public Token Op1;
+		public TermoAriContext b;
 		public List<TermoAriContext> termoAri() {
 			return getRuleContexts(TermoAriContext.class);
 		}
@@ -1032,7 +1035,7 @@ public class GramaticaSimpParser extends Parser {
 			{
 			((ExpressaoAritmeticaContext)_localctx).code =  ""; ((ExpressaoAritmeticaContext)_localctx).varAnterior =  ""; ((ExpressaoAritmeticaContext)_localctx).pos =  0;
 			setState(155);
-			((ExpressaoAritmeticaContext)_localctx).termoAri = termoAri();
+			((ExpressaoAritmeticaContext)_localctx).a = ((ExpressaoAritmeticaContext)_localctx).termoAri = termoAri();
 			_localctx.code += ((ExpressaoAritmeticaContext)_localctx).termoAri.termo;
 			setState(164);
 			_errHandler.sync(this);
@@ -1044,17 +1047,9 @@ public class GramaticaSimpParser extends Parser {
 				((ExpressaoAritmeticaContext)_localctx).Op1 = match(Op1);
 				_localctx.code += (((ExpressaoAritmeticaContext)_localctx).Op1!=null?((ExpressaoAritmeticaContext)_localctx).Op1.getText():null);
 				setState(159);
-				((ExpressaoAritmeticaContext)_localctx).termoAri = termoAri();
+				((ExpressaoAritmeticaContext)_localctx).b = ((ExpressaoAritmeticaContext)_localctx).termoAri = termoAri();
 
-				_localctx.code += ((ExpressaoAritmeticaContext)_localctx).termoAri.termo;
-				if(listaAtribuicao.qntExpressoes() == 0){
-				    listaAtribuicao.addExpressao("_t"+listaAtribuicao.qntExpressoes()+" = " +_localctx.code);
-				}else {
-				    listaAtribuicao.addExpressao("_t"+listaAtribuicao.qntExpressoes()+" = "+"_t"+(listaAtribuicao.qntExpressoes() - 1)+_localctx.code);
-				}
-				System.out.println("Code: "+_localctx.code);
-				((ExpressaoAritmeticaContext)_localctx).code =  "";
-
+				    System.out.println("Op1: "+(((ExpressaoAritmeticaContext)_localctx).a!=null?_input.getText(((ExpressaoAritmeticaContext)_localctx).a.start,((ExpressaoAritmeticaContext)_localctx).a.stop):null)+" = "+((ExpressaoAritmeticaContext)_localctx).b.termo);
 
 				}
 				}
@@ -1078,8 +1073,10 @@ public class GramaticaSimpParser extends Parser {
 	@SuppressWarnings("CheckReturnValue")
 	public static class TermoAriContext extends ParserRuleContext {
 		public String termo;
+		public FatorAriContext a;
 		public FatorAriContext fatorAri;
 		public Token Op2;
+		public FatorAriContext b;
 		public List<FatorAriContext> fatorAri() {
 			return getRuleContexts(FatorAriContext.class);
 		}
@@ -1118,7 +1115,7 @@ public class GramaticaSimpParser extends Parser {
 			{
 			((TermoAriContext)_localctx).termo =   "";
 			setState(168);
-			((TermoAriContext)_localctx).fatorAri = fatorAri();
+			((TermoAriContext)_localctx).a = ((TermoAriContext)_localctx).fatorAri = fatorAri();
 			_localctx.termo += ((TermoAriContext)_localctx).fatorAri.code;
 			setState(177);
 			_errHandler.sync(this);
@@ -1130,9 +1127,9 @@ public class GramaticaSimpParser extends Parser {
 				((TermoAriContext)_localctx).Op2 = match(Op2);
 				_localctx.termo += (((TermoAriContext)_localctx).Op2!=null?((TermoAriContext)_localctx).Op2.getText():null);
 				setState(172);
-				((TermoAriContext)_localctx).fatorAri = fatorAri();
+				((TermoAriContext)_localctx).b = ((TermoAriContext)_localctx).fatorAri = fatorAri();
 
-				_localctx.termo += ((TermoAriContext)_localctx).fatorAri.code;
+				    System.out.println("Op2: "+(((TermoAriContext)_localctx).a!=null?_input.getText(((TermoAriContext)_localctx).a.start,((TermoAriContext)_localctx).a.stop):null)+" = "+(((TermoAriContext)_localctx).b!=null?_input.getText(((TermoAriContext)_localctx).b.start,((TermoAriContext)_localctx).b.stop):null));
 
 				}
 				}
@@ -1722,6 +1719,7 @@ public class GramaticaSimpParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+			{
 			setState(237);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
@@ -1741,6 +1739,7 @@ public class GramaticaSimpParser extends Parser {
 				break;
 			default:
 				throw new NoViableAltException(this);
+			}
 			}
 			}
 		}
